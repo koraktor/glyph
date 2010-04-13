@@ -11,9 +11,11 @@ namespace :load do
 		unless Glyph.lite?
 			raise RuntimeError, "The current directory is not a valid Glyph project" unless Glyph.project?
 			Glyph.info 'Loading bibliography entries...'
-			bibliography = yaml_load Glyph::PROJECT/'bibliography.yml'
-			raise RuntimeError, "Invalid bibliography file" unless bibliography.blank? || bibliography.is_a?(Hash)
-			Glyph::BIBLIOGRAPHY.replace bibliography
+			bibliography = yaml_load Glyph::PROJECT/'bibliography.yml' rescue nil
+			unless bibliography.nil?
+				raise RuntimeError, "Invalid bibliography file" unless bibliography.blank? || bibliography.is_a?(Hash)
+				Glyph::BIBLIOGRAPHY.replace bibliography
+			end
 		end
 	end
 
