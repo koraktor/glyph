@@ -42,6 +42,9 @@ module Glyph
 	# The current version of Glyph
 	VERSION = file_load(HOME/'VERSION').strip
 
+	# All currently loaded bibliography entries
+	BIBLIOGRAPHY = {}
+
 	# All the currently-loaded snippets
 	SNIPPETS = {}
 

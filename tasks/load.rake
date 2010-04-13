@@ -3,7 +3,18 @@
 namespace :load do
 
 	desc "Load all files"
-	task :all => [:config, :snippets, :macros] do
+	task :all => [:bibliography, :config, :snippets, :macros] do
+	end
+
+	desc 'Load bibliography'
+	task :bibliography do
+		unless Glyph.lite?
+			raise RuntimeError, "The current directory is not a valid Glyph project" unless Glyph.project?
+			Glyph.info 'Loading bibliography entries...'
+			bibliography = yaml_load Glyph::PROJECT/'bibliography.yml'
+			raise RuntimeError, "Invalid bibliography file" unless bibliography.blank? || bibliography.is_a?(Hash)
+			Glyph::BIBLIOGRAPHY.replace bibliography
+		end
 	end
 
 	desc "Load snippets"
@@ -28,8 +39,12 @@ namespace :load do
 			macro_dir = macro_base/Glyph["filters.target"].to_s
 			if macro_dir.exist? then
 				macro_dir.children.each do |f|
-					Glyph.instance_eval file_load(f)
+					Glyph.instance_eval file_load(f) unless f.directory?
 				end
+			end
+			bibstyle_macros = macro_base/Glyph['filters.target']/'bibstyles'/(Glyph['document.bibstyle'] + '.rb')
+			if bibstyle_macros.exist?
+				Glyph.instance_eval file_load(bibstyle_macros)
 			end
 		end
 		load_macros.call Glyph::HOME/"macros"

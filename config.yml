@@ -7,6 +7,7 @@
   :draft: false
   :output: 'html'
   :output_targets: [:html, :pdf]
+  :bibstyle: 'plain'
 :structure:
   :hidden:
     - :imprint
