@@ -44,8 +44,9 @@ describe Glyph do
 		macros = [:anchor, :link, :codeph, :fmi, :note, :box, :code, :title, :subtitle,
 		:img, :fig, :author, :pubdate, :table, :td, :tr, :th, :comment, :todo, :snippet, "snippet:",
 		:include, :config, "config:", :ruby, :escape, :textile, :markdown, :div, :header, :document, :body,
-		:head, :style, :toc, :section, :condition, :eq, :and, :or, :not, :match, :highlight, "macro:"]
-		aliases = [	
+		:head, :style, :toc, :section, :condition, :eq, :and, :or, :not, :match, :highlight, "macro:",
+        :bibliography, :cite]
+		aliases = [
 			[[:bookmark, "#"], :anchor],
 			[["=>"], :link],
 			[[:important, :caution, :tip], :note],
@@ -70,7 +71,7 @@ describe Glyph do
 		aliases.each { |v| check_aliases.call v[0], v[1] }
 		check_aliases.call Glyph['structure.frontmatter'], :div
 		check_aliases.call Glyph['structure.bodymatter'], :div
-		check_aliases.call Glyph['structure.backmatter'], :div
+		check_aliases.call Glyph['structure.backmatter'] - [:bibliography], :div
 		Glyph['structure.frontmatter'].length.should == 8
 		Glyph['structure.bodymatter'].length.should == 4
 		Glyph['structure.backmatter'].length.should == 13

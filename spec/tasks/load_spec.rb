@@ -16,6 +16,11 @@ describe "load" do
 		delete_project
 		lambda { Glyph.run! 'load:all' }.should raise_error
 	end
+
+	it '[bibliography] should load bibliography entries' do
+		lambda { Glyph.run! 'load:bibliography'}.should_not raise_error
+		Glyph::BIBLIOGRAPHY[:book].blank?.should == false
+	end
 	
 	it "[snippets] should load snippet definitions" do
 		lambda { Glyph.run! 'load:snippets'}.should_not raise_error
