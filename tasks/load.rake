@@ -44,7 +44,7 @@ namespace :load do
 					Glyph.instance_eval file_load(f) unless f.directory?
 				end
 			end
-			bibstyle_macros = macro_base/Glyph['filters.target']/'bibstyles'/(Glyph['document.bibstyle'] + '.rb')
+			bibstyle_macros = macro_base/Glyph['filters.target'].to_s/'bibstyles'/(Glyph['document.bibstyle'].to_s + '.rb')
 			if bibstyle_macros.exist?
 				Glyph.instance_eval file_load(bibstyle_macros)
 			end
