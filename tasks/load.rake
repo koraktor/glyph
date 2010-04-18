@@ -2,8 +2,19 @@
 
 namespace :load do
 
+	desc 'Load acronyms'
+	task :acronyms do
+		unless Glyph.lite?
+			raise RuntimeError, "The current directory is not a valid Glyph project" unless Glyph.project?
+			Glyph.info "Loading acronyms..."
+			acronyms = yaml_load Glyph::PROJECT/'acronyms.yml'
+			raise RuntimeError, "Invalid acronyms file" unless acronyms.blank? || acronyms.is_a?(Hash)
+			Glyph::ACRONYMS.replace acronyms
+		end
+	end
+
 	desc "Load all files"
-	task :all => [:config, :snippets, :macros] do
+	task :all => [:acronyms, :config, :snippets, :macros] do
 	end
 
 	desc "Load snippets"

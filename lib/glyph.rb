@@ -42,6 +42,8 @@ module Glyph
 	# The current version of Glyph
 	VERSION = file_load(HOME/'VERSION').strip
 
+	ACRONYMS = {}
+
 	# All the currently-loaded snippets
 	SNIPPETS = {}
 

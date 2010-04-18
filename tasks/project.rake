@@ -10,6 +10,8 @@ namespace :project do
 		# Create subdirectories
 		subdirs = ['lib/tasks', 'lib/macros', 'lib/macros/html', 'lib', 'text', 'output', 'images', 'styles']
 		subdirs.each {|d| (dir/d).mkpath }
+		# Create acronyms
+		yaml_dump Glyph::PROJECT/'acronyms.yml', { :TEST => 'Test acronym' }
 		# Create snippets
 		yaml_dump Glyph::PROJECT/'snippets.yml', {:test => "This is a \nTest snippet"}
 		# Create files
