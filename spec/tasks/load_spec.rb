@@ -16,13 +16,25 @@ describe "load" do
 		delete_project
 		lambda { Glyph.run! 'load:all' }.should raise_error
 	end
-	
+
+	it "[acronyms] should load acronym definitions" do
+		lambda { Glyph.run! 'load:acronyms' }.should_not raise_error
+		Glyph::ACRONYMS[:TEST].blank?.should == false
+	end
+
+	it "[acronyms] should not load acronyms.yml in Lite mode" do
+		Glyph.lite_mode = true
+		lambda { Glyph.run! 'load:acronyms' }.should_not raise_error
+		Glyph::ACRONYMS[:TEST].blank?.should == true
+		Glyph.lite_mode = false
+	end
+
 	it "[snippets] should load snippet definitions" do
 		lambda { Glyph.run! 'load:snippets'}.should_not raise_error
 		Glyph::SNIPPETS[:test].blank?.should == false
 	end
 
-	it "[snippets] should not load snippets.xml in Lite mode" do
+	it "[snippets] should not load snippets.yml in Lite mode" do
 		Glyph.lite_mode = true
 		lambda { Glyph.run! 'load:snippets'}.should_not raise_error
 		Glyph::SNIPPETS[:test].blank?.should == true
