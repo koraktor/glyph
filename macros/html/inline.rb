@@ -1,5 +1,30 @@
 #!/usr/bin/env ruby
 
+macro :acl do
+	exact_parameters 1
+	acronym = @params.first.to_sym
+	%{<a href="#acronym-#{acronym}">#{Glyph::ACRONYMS[acronym]} (#{acronym})</a>}
+end
+
+macro :acronym do
+	exact_parameters 1
+	acronym = @params.first.to_sym
+	if Glyph::USED_ACRONYMS.include? acronym
+		macro = 'acs'
+	else
+		Glyph::USED_ACRONYMS << acronym
+		macro = 'acl'
+	end
+
+	interpret "#{macro}[#{acronym}]"
+end
+
+macro :acs do
+	exact_parameters 1
+	acronym = @params.first.to_sym
+	%{<a href="#acronym-#{acronym}">#{acronym}</a>}
+end
+
 macro :anchor do 
 	min_parameters 1
 	max_parameters 2
@@ -62,6 +87,7 @@ macro :todo do
 	end
 end
 
+macro_alias :ac => :acronym
 macro_alias :bookmark => :anchor
 macro_alias '#' => :anchor
 macro_alias '=>' => :link

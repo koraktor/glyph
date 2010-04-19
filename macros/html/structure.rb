@@ -1,5 +1,19 @@
 #!/usr/bin/env ruby
 
+macro :acronyms do
+	no_parameters
+	acronyms = '<ul class="acronyms">'
+	Glyph::ACRONYMS.each do |acronym, description|
+		acronyms << "<li id=\"acronym-#{acronym}\">#{acronym} &mdash; #{description}</li>"
+	end
+	acronyms << '</ul>'
+
+	%{<h2 class="acronyms-header" id="h_acronyms">Acronyms</h2>
+<div id="acronyms">
+#{acronyms}
+}
+end
+
 macro :div do 
 	exact_parameters 1, :level => :warning
 %{<div class="#{@name}">

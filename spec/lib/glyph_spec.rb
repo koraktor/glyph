@@ -41,11 +41,12 @@ describe Glyph do
 		delete_project
 		create_project
 		Glyph.run! 'load:macros'
-		macros = [:anchor, :link, :codeph, :fmi, :note, :box, :code, :title, :subtitle,
+		macros = [:acl, :acronym, :acs, :anchor, :link, :codeph, :fmi, :note, :box, :code, :title, :subtitle,
 		:img, :fig, :author, :pubdate, :table, :td, :tr, :th, :comment, :todo, :snippet, "snippet:",
-		:include, :config, "config:", :ruby, :escape, :textile, :markdown, :div, :header, :document, :body,
+		:include, :config, "config:", :ruby, :escape, :textile, :markdown, :acronyms, :div, :header, :document, :body,
 		:head, :style, :toc, :section, :condition, :eq, :and, :or, :not, :match, :highlight, "macro:"]
-		aliases = [	
+		aliases = [
+			[[:ac], :acronym],
 			[[:bookmark, "#"], :anchor],
 			[["=>"], :link],
 			[[:important, :caution, :tip], :note],
