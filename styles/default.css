@@ -217,3 +217,15 @@ code {
 	font-family: "Droid Sans Mono", "Consolas", "Monaco", "Courier", "Monospace";
 }
 
+ul.acronyms li {
+	font-weight: bold;
+}
+
+ul.acronyms li em:before {
+	content: "&mdash "
+}
+
+ul.acronyms li em {
+	font-weight: normal;
+	font-style:  italic;
+}

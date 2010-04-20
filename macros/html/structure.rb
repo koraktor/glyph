@@ -4,7 +4,7 @@ macro :acronyms do
 	no_parameters
 	acronyms = '<ul class="acronyms">'
 	Glyph::ACRONYMS.each do |acronym, description|
-		acronyms << "<li id=\"acronym-#{acronym}\">#{acronym} &mdash; #{description}</li>"
+		acronyms << "<li id=\"acronym-#{acronym}\">#{acronym} <em>#{description}</em></li>"
 	end
 	acronyms << '</ul>'
 
