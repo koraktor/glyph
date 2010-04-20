@@ -87,6 +87,7 @@ macro :todo do
 	end
 end
 
+macro_alias '+' => :acronym
 macro_alias :ac => :acronym
 macro_alias :bookmark => :anchor
 macro_alias '#' => :anchor

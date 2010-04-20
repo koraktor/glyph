@@ -46,7 +46,7 @@ describe Glyph do
 		:include, :config, "config:", :ruby, :escape, :textile, :markdown, :acronyms, :div, :header, :document, :body,
 		:head, :style, :toc, :section, :condition, :eq, :and, :or, :not, :match, :highlight, "macro:"]
 		aliases = [
-			[[:ac], :acronym],
+			[['+', :ac], :acronym],
 			[[:bookmark, "#"], :anchor],
 			[["=>"], :link],
 			[[:important, :caution, :tip], :note],
