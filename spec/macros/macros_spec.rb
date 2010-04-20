@@ -15,13 +15,13 @@ describe "Macro:" do
 
 	it 'acronym' do
 		interpret 'This is a acs[TEST].'
-		@p.document.output.should == 'This is a <a href="#acronym-TEST">TEST</a>.'
+		@p.document.output.should == 'This is a <a class="acronym-short" href="#acronym-TEST">TEST</a>.'
 		interpret 'This is a acronym[TEST].'
-		@p.document.output.should == 'This is a <a href="#acronym-TEST">Test acronym (TEST)</a>.'
+		@p.document.output.should == 'This is a <a class="acronym-long" href="#acronym-TEST">Test acronym (TEST)</a>.'
 		interpret 'This is a acronym[TEST].'
-		@p.document.output.should == 'This is a <a href="#acronym-TEST">TEST</a>.'
+		@p.document.output.should == 'This is a <a class="acronym-short" href="#acronym-TEST">TEST</a>.'
 		interpret 'This is a acl[TEST].'
-		@p.document.output.should == 'This is a <a href="#acronym-TEST">Test acronym (TEST)</a>.'
+		@p.document.output.should == 'This is a <a class="acronym-long" href="#acronym-TEST">Test acronym (TEST)</a>.'
 	end
 
 	it "anchor" do

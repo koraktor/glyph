@@ -3,7 +3,7 @@
 macro :acl do
 	exact_parameters 1
 	acronym = @params.first.to_sym
-	%{<a href="#acronym-#{acronym}">#{Glyph::ACRONYMS[acronym]} (#{acronym})</a>}
+	%{<a class="acronym-long" href="#acronym-#{acronym}">#{Glyph::ACRONYMS[acronym]} (#{acronym})</a>}
 end
 
 macro :acronym do
@@ -22,7 +22,7 @@ end
 macro :acs do
 	exact_parameters 1
 	acronym = @params.first.to_sym
-	%{<a href="#acronym-#{acronym}">#{acronym}</a>}
+	%{<a class="acronym-short" href="#acronym-#{acronym}">#{acronym}</a>}
 end
 
 macro :anchor do 
